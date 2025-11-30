@@ -1,0 +1,93 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.card {
+    background: var(--bg-secondary, #fff);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.icon {
+    margin-bottom: 1rem;
+}
+
+.card h1 {
+    margin: 0 0 1rem;
+    color: var(--text-primary, #333);
+}
+
+.message {
+    color: var(--text-secondary, #666);
+    margin-bottom: 2rem;
+}
+
+.qrSection {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color, #eee);
+}
+
+.qrWrapper {
+    background: white;
+    padding: 10px;
+}
+
+.resId {
+    margin: 1rem 0 0;
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary, #333);
+}
+
+.details {
+    text-align: left;
+    background: var(--bg-tertiary, #f9f9f9);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.details h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+}
+
+.details ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: var(--text-secondary, #555);
+}
+
+.emailNote {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #888);
+    margin-bottom: 2rem;
+}
+
+.dashboardBtn {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-color, #646cff);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.dashboardBtn:hover {
+    background: #535bf2;
+}

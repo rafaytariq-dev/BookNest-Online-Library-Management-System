@@ -1,0 +1,81 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--bg-secondary, #fff);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border-color, #eee);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.list {
+    padding-left: 1.5rem;
+    margin: 0;
+}
+
+.list li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary, #555);
+}
+
+.terms {
+    margin-bottom: 2rem;
+}
+
+.checkboxLabel {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.checkboxLabel input {
+    margin-top: 0.3rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.backBtn {
+    flex: 1;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.confirmBtn {
+    flex: 2;
+    padding: 1rem;
+    background: var(--primary-color, #646cff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.confirmBtn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
