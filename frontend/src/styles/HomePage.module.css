@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+
+.titleSection h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #646cff 0%, #9f7aea 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.titleSection p {
+    color: var(--text-secondary, #666);
+    margin-top: 0.5rem;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.empty {
+    text-align: center;
+    padding: 4rem;
+    color: var(--text-secondary, #666);
+    font-size: 1.1rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+.featuredSection {
+    margin-bottom: 3rem;
+}
+
+.featuredSection h2,
+.mainSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.featuredGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}

@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.button {
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #ddd);
+    background: var(--bg-secondary, #fff);
+    color: var(--text-secondary, #666);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.button:hover {
+    border-color: var(--primary-color, #646cff);
+    color: var(--primary-color, #646cff);
+}
+
+.button.active {
+    background: var(--primary-color, #646cff);
+    color: white;
+    border-color: var(--primary-color, #646cff);
+}

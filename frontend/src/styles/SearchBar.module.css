@@ -1,0 +1,30 @@
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary, #999);
+}
+
+.input {
+    width: 100%;
+    padding: 10px 12px 10px 40px;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--bg-secondary, #fff);
+    color: var(--text-primary, #333);
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary-color, #646cff);
+    box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
