@@ -13,6 +13,11 @@ import cookieParser from 'cookie-parser';
 import { DataSource } from 'typeorm';
 import { TypeOrmStore } from './auth/session.store';
 
+function parseBooleanEnv(value: string | undefined, fallback: boolean): boolean {
+  if (value === undefined) return fallback;
+  return ['1', 'true', 'yes', 'y', 'on'].includes(value.toLowerCase());
+}
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -31,7 +36,10 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: parseBooleanEnv(
+          process.env.SESSION_COOKIE_SECURE,
+          process.env.NODE_ENV === 'production',
+        ),
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
       },
