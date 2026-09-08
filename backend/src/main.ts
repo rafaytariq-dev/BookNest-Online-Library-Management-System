@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
-// Load environment variables before anything else
-dotenv.config({ path: path.resolve(process.cwd(), '.env') });
+// Load the backend environment regardless of the directory used to start npm.
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
