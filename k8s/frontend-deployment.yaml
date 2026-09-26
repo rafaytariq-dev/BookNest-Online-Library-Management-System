@@ -12,9 +12,39 @@ spec:
       labels:
         app: booknest-frontend
     spec:
+      # Nginx resolves its upstream while starting. Waiting here prevents a transient
+      # Kubernetes DNS/backend startup race from crashing the frontend container.
+      initContainers:
+        - name: wait-for-backend
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - until wget -q -O /dev/null http://booknest-backend:3000/api/health; do sleep 2; done
       containers:
         - name: frontend
           image: booknest-frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - name: http
+              containerPort: 80
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 2
+            failureThreshold: 30
+          # Readiness verifies the browser's real same-origin frontend -> Nginx -> API path.
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            periodSeconds: 5
+            failureThreshold: 3
+          # A backend outage should make this pod unready, not restart healthy Nginx.
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
