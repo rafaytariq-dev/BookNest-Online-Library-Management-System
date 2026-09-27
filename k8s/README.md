@@ -9,6 +9,28 @@ The frontend Nginx config proxies `/api/*` to the backend service, so the browse
 The frontend init container waits for the backend health route before starting Nginx;
 its readiness probe then checks `/api/health` through that same reverse-proxy path.
 
+## Create a local Kind cluster
+
+Use the checked-in Kind configuration so the Kubernetes API always uses
+`https://127.0.0.1:36443` instead of a randomly assigned Docker port:
+
+```powershell
+kind create cluster --name booknest --config k8s/kind-config.yaml --wait 120s
+kubectl config use-context kind-booknest
+kubectl get nodes
+```
+
+If Kind is not installed globally, run the downloaded executable from the Faultline
+backend workspace instead:
+
+```powershell
+..\Faultline-Backend\faultline\.local\kind.exe create cluster --name booknest --config k8s/kind-config.yaml --wait 120s
+```
+
+Kind cannot change the published API port of an existing control-plane container. To
+move an existing cluster to the fixed port, export or recreate any state you need, then
+delete and create the cluster again using the configuration above.
+
 ## Build images in Minikube
 
 ```bash
