@@ -12,7 +12,10 @@ its readiness probe then checks `/api/health` through that same reverse-proxy pa
 ## Create a local Kind cluster
 
 Use the checked-in Kind configuration so the Kubernetes API always uses
-`https://127.0.0.1:36443` instead of a randomly assigned Docker port:
+port `36443` instead of a randomly assigned Docker port. It binds the API to all host
+interfaces and includes `192.168.18.35` in the API certificate for the remote Faultline
+machine. If this host's LAN address changes, update `apiServer.certSANs` and recreate the
+cluster:
 
 ```powershell
 kind create cluster --name booknest --config k8s/kind-config.yaml --wait 120s
@@ -30,6 +33,25 @@ backend workspace instead:
 Kind cannot change the published API port of an existing control-plane container. To
 move an existing cluster to the fixed port, export or recreate any state you need, then
 delete and create the cluster again using the configuration above.
+
+## Use kubectl from the Faultline machine
+
+Port forwarding is only the network half of remote access. Faultline also needs this
+cluster's CA and client credentials. On the BookNest machine, export and verify an
+embedded, portable kubeconfig:
+
+```powershell
+.\scripts\Export-FaultlineKubeconfig.ps1 -BookNestAddress 192.168.18.35
+```
+
+Copy the generated file securely to a computer that can open the Faultline UI (it
+contains administrator client credentials). Open **Clusters → Cluster Onboarding**,
+select the file under **Cluster access file**, and submit the form. No terminal command
+is required on the Faultline machine.
+
+The control-plane field can be left blank because the uploaded configuration already
+contains `192.168.18.35:36443`. After Faultline accepts the upload, delete the transferred
+copy from the browser machine.
 
 ## Build images in Minikube
 

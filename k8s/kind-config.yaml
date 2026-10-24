@@ -1,8 +1,21 @@
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+# Create this cluster with `--name booknest` to use context `kind-booknest`.
 networking:
   # Keep kubectl's API endpoint stable when the cluster is recreated.
-  apiServerAddress: 127.0.0.1
+  apiServerAddress: 0.0.0.0
   apiServerPort: 36443
 nodes:
   - role: control-plane
+    # Faultline (10.185.145.122) reaches the API server through this host's
+    # LAN address (10.185.145.67). Kind otherwise issues a certificate only
+    # for its container and bind addresses, which kubectl rejects for this IP.
+    kubeadmConfigPatches:
+      - |
+        kind: ClusterConfiguration
+        apiServer:
+          certSANs:
+            - "10.8.0.5"
+            - "10.8.0.2"
+            - "10.8.0.4"
+            - "127.0.0.1"            

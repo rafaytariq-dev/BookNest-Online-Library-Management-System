@@ -19,7 +19,7 @@ export class BooksController {
   }
 
   @Public()
-  @Get('categories')
+  @Get('categoriessss')
   getCategories() {
     return this.booksService.getCategories();
   }
